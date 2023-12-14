@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Chatbox</title>
+</head>
+<body>
+    <h1>Chatbox</h1>
+
+    <form th:action="@{/sendMessage}" method="post">
+        <label for="message">Nhập tin nhắn:</label>
+        <input type="text" id="message" name="message" required>
+        <button type="submit">Gửi</button>
+    </form>
+
+    <div th:if="${reply}">
+        <p th:text="${reply}"></p>
+    </div>
+</body>
+</html>
