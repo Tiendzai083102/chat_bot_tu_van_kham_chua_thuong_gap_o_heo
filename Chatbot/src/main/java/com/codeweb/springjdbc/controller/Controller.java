@@ -18,7 +18,7 @@ import com.codeweb.springjdbc.subclass.LuatSuyDienLui;
 import com.codeweb.springjdbc.subclass.LuatSuyDienTien;
 
 public class Controller {
-
+// Gom các bệnh cùng 1 triệu chứng
 	public static List<LuatSuyDienTien> initLuatSuyDienTien(List<Luat> luatList) {
 		List<LuatSuyDienTien> luatSuyDienTiens = new ArrayList<>();
 		for (Luat i : luatList) {
@@ -38,6 +38,7 @@ public class Controller {
 	}
 
 	///////////////////////////////////////////////////////////////////////////
+	//Gom các triệu chứng vào cùng 1 bệnh
 	public static List<LuatSuyDienLui> initLuatSuyDienLui(List<Luat> luatList) {
 		List<LuatSuyDienLui> luatSuyDienLuis = new ArrayList<>();
 		for (Luat i : luatList) {
@@ -57,6 +58,7 @@ public class Controller {
 	}
 
 	///////////////////////////////////////////////////////////////////////////
+	// Lấy thông tin các triệu chứng của 1 bệnh
 	private static Set<TrieuChung> getTrieuChungCuaMotBenh(String idBenh, List<LuatSuyDienLui> luatSuyDienLuis) {
 		Set<TrieuChung> trieuChungs = new HashSet<>();
 		for (LuatSuyDienLui i : luatSuyDienLuis) {
@@ -67,7 +69,7 @@ public class Controller {
 		return trieuChungs;
 	}
 	///////////////////////////////////////////////////////////////////////////
-
+	//Hàm này được sử dụng để thực hiện quá trình suy diễn tiến, trong đó kiểm tra và thêm các sự kiện mới vào tập hợp dựa trên các quy tắc suy diễn tiến cho đến khi không còn sự thay đổi nào
 	private static Set<String> suyDienTien(List<LuatSuyDien> rules, Set<String> facts) {
 		int currentLengthOfFaces = 0;
 		int afterLengthOfFaces = 0;
@@ -88,6 +90,7 @@ public class Controller {
 	}
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//bước trung gian để thực hiện quy trình chẩn đoán bệnh thông qua suy diễn lùi, và kết quả chẩn đoán có thể được xác định dựa trên giá trị trả về của hàm.
 	private static boolean suyDienLuiDungDeChuanDoanBenh(List<LuatSuyDienLui> luatSuyDienLuis, VanDe benhDuDoan,
 			List<TrieuChung> trieuChung) {
 		List<LuatSuyDien> luatSuyDiens = new ArrayList<>();
@@ -110,6 +113,7 @@ public class Controller {
 	}
 
 	///////////////////////////////////////////////////////////////////////////
+	//Hỗ trợ quyết định hoặc chẩn đoán, nơi cần thực hiện suy diễn lùi để kiểm tra một mục tiêu dựa trên các sự kiện và quy tắc suy diễn lùi.
 	private static boolean suyDienLui(List<LuatSuyDien> rules, Set<String> facts, Stack<String> goal,
 			Stack<String> isCheck) {
 		while (true) {
@@ -137,7 +141,7 @@ public class Controller {
 			}
 		}
 	}
-
+	//Check validate
 	public static List<Integer> checkAnswer(String a) {
 		ArrayList<Integer> danhSachTrieuChung = new ArrayList<>();
 		String[] mangChuoi = a.split(",");
@@ -150,82 +154,79 @@ public class Controller {
 		String[] symptoms5 = { "Tiêu chảy", "Phân nhiều nước", "Phân có bọt", "Phân màu trắng", "Phân màu vàng",
 				"Phân có mùi hôi tanh" };
 		String[] symptoms6 = { "Bị nôn", "Bụng hóp", "Mắt lõm", "Da tím tái", "Da thâm" };
-		String[] symptoms7 = { "Kém ăn", "Không chịu ăn", "Lười ăn", "Người gầy", "Còi cọc" };
+		String[] symptoms7 = { "Kém ăn", "Không chịu ăn", "Lười ăn", "Người gầy", "Còi cọc","gầy yếu" };
 		String[] symptoms8 = { "Mất nước", "Lông xù", "Bỏ bú", "Không chịu bú", "Cơ thể suy kiệt" };
-		String[] symptoms9 = { "Uể oải", "Mệt mỏi", "Nằm ì một chỗ", "Không chịu đi lại" };
-		String[] symptoms10 = { "Tiêu chảy", "Phân màu trắng sữa", "Phân vàng, xám", "Phân màu vàng, xám",
+		String[] symptoms9 = { "Uể oải", "Mệt mỏi", "Nằm ì một chỗ", "Không chịu đi lại","nằm một chỗ" };
+		String[] symptoms10 = { "Phân màu trắng sữa", "Phân vàng, xám", "Phân màu vàng, xám",
 				"Phân sền sệt", "Phân xanh lá cây", "Phân xanh lục" };
 		String[] symptoms11 = { "Khó thở", "Không thở được", "Thở khó khăn", "Nằm vật vã" };
 		String[] symptoms12 = { "Bị suy tim", "Có hiện tượng suy tim", "Người co giật", "Co giật dữ dội",
 				"Hộc máu ở mũi", "Máu chảy ra từ mũi", "Hộc máu ở họng", "Máu chảy ra từ họng" };
 		String[] symptoms13 = { "Bị vàng da", "Da có màu vàng", "Vàng da", "Da vàng" };
 		String[] symptoms14 = { "Có mùi khét", "Người có mùi khét" };
-		String[] symptoms15 = { "Lợn nái bị xảy thai" };
+		String[] symptoms15 = { "Lợn nái bị xảy thai","xảy thai","thai xảy" };
 		String[] symptoms16 = { "dịch hoàn bị sưng", "Dịch hoàn sưng to" };
-		String[] symptoms17 = { "Tiếng kêu khan", "Tiếng kêu bị khan", "Mắt bị sưng", "Mí mắt sưng", "Mắt có dỉ" };
-		String[] symptoms18 = { "Người đi loạng choạng", "Người đi không vững", "Đi vòng quanh", "Đi lòng lòng",
+		String[] symptoms17 = { "Tiếng kêu khan", "Tiếng kêu bị khan", "Mắt bị sưng", "Mí mắt sưng", "Mắt có dỉ","tiếng khan" };
+		String[] symptoms18 = { "đi loạng choạng", "đi không vững", "Đi vòng quanh", "Đi lòng lòng",
 				"Đi vòng quanh 1 chỗ", "Đi giật lùi" };
 		String[] symptoms19 = { "Mũi bị phù", "Mũi phù", "Phù mũi", "Phù đầu", "Đầu bị phù", "Mặt bị phù", "Tai bị phù",
 				"Sùi bọt mép", "Người run từng cơn", "Chân bơi trong không khí" };
-		String[] symptoms20 = { "Người gầy yếu", "Bị ho", "Khó thở" };
+		String[] symptoms20 = { "Bị ho", "Khó thở","thở dốc" };
 		String[] symptoms21 = { "Bài tiết không ổn định", "Bài tiết bất thường", "Đi ngoài bất thường",
-				"Đi ngoài không ổn định", "Tiêu chảy", "Táo bón", "Bị tiêu chảy", "Bị táo bón", "Đi ngoài có vấn đề" };
-		String[] symptoms22 = { "Thở mạnh", "Thở nặng nhọc", "Thở khó khăn", "Xuất hiện nốt đỏ trên da",
+				"Đi ngoài không ổn định", "Táo bón", "Bị táo bón", "Đi ngoài có vấn đề" };
+		String[] symptoms22 = { "Xuất hiện nốt đỏ trên da","nốt đỏ","vết đỏ","huyết đỏ",
 				"Xuất hiện nốt đỏ chỗ da mỏng", "Có đám xuất huyết lớn", "Bong da vẩy", "Da bong vẩy", "Da bị bong vẩy",
 				"Các nốt đỏ bị tím lại", "Các nốt đỏ bị thối loét" };
 		String[] symptoms23 = { "Mắt có màu trắng", "Mắt trắng", "Mắt đục trắng", "Mũi bị viêm", "Mũi viêm", "Viêm mũi",
-				"Bị viêm mũi", "Nước mũi đặc", "Đi ngoài không ổn định", "Đi ngoài có vấn đề", "Đi ngoài bất thường" };
-		String[] symptoms24 = { "Khó thở", "Thở nặng nhọc", "Thở khó", "Thở khó khăn", "Xuất hiện tụ máu đỏ ở tai",
+				"Bị viêm mũi", "Nước mũi đặc"};
+		String[] symptoms24 = { "Xuất hiện tụ máu đỏ ở tai","tụ huyết tại tai","tai có vết đỏ",
 				"Tai xuất hiện tụ máu đỏ", "Xuất hiện các tụ máu đỏ ở bụng", "Bụng xuất hiện tụ máu đỏ",
-				"Xuất hiện các tụ máu đỏ ở đùi trong", "Đùi trong xuất hiện tụ máu",
+				"Xuất hiện các tụ máu đỏ ở đùi trong", "Đùi trong xuất hiện tụ máu","tụ máu tại thân",
 				"Xuất hiện các tụ máu đỏ ở tai, bụng, đùi trong", "Tụ máu đỏ chuyển sang xanh tím" };
 		String[] symptoms25 = { "Chảy nhiều nước dãi", "Chảy nước dãi nhiều", "Nước dãi chảy nhiều",
-				"Chảy nhiều nước mũi", "Chảy nước mũi nhiều", "Nước mũi chảy nhiều" };
+				"Chảy nhiều nước mũi", "Chảy nước mũi nhiều", "Nước mũi chảy nhiều" ,"chảy nước mũi","chảy dãi"};
 		String[] symptoms26 = { "Da vùng mũi có màu tím xanh", "Da ở mũi có màu tím xanh", "Da ở mũi có màu xanh tím",
 				"Da mũi có màu xanh tím", "Da mũi có màu tím xanh", "Da ở tai có màu tím xanh",
 				"Da ở tai có màu xanh tím", "Da ở chân có màu tím xanh", "Bị bại huyết nặng",
-				"Có hiện tượng bại huyết" ,"bại huyết"};
+				"Có hiện tượng bại huyết" ,"bại huyết","mũi có màu xanh tím","bại huyết","da có màu xanh tím"};
 		String[] symptoms27 = { "Chết đột ngột", "Đột ngột chết", "Đột nhiên chết", "Chết bất ngờ",
 				"Chết không có dấu hiệu" };
 		String[] symptoms28 = { "Nhịp tim rối loạn", "Rối loạn nhịp tim", "Nhịp tim bất thường", "Tim đập bất thường",
-				"Tim đập rối loạn", "Tim đập không bình thường" };
-		String[] symptoms29 = { "Phổi bị viêm", "Bị viêm phổi", "Viêm phổi", "Viêm phổi có tính chất đối xứng",
-				"Phổi bị viêm có tính chất đối xứng", "Vùng phổi viêm có màu đen", "Chỗ viêm phổi có màu đen",
-				"Vùng phổi viêm có màu tím", "Chỗ viêm phổi có màu tím" };
+				"Tim đập rối loạn", "Tim đập không bình thường","nhịp tim không ổn định" };
+		String[] symptoms29 = { "phổi màu đen","phổi có màu đen","phổi tím","phổi có màu tím"};
 		String[] symptoms30 = { "Mắt đỏ", "Đỏ mắt", "Mắt màu đỏ", "Mắt có màu đỏ", "Có hành vi điên cuồng, lồng lộn",
 				"Hành động điên cuồng, khó đoán", "Rúc đầu vào khe tường", "Đầu rúc vào khe tường", "Hộc máu",
 				"Máu hộc ra ngoài" };
-		String[] symptoms31 = { "Mổ thấy thận sưng tụ máu từng đám", "Mổ ra thấy thân sưng tụ máu", "Thận sưng tụ máu",
-				"Thận sưng tụ máu từng đám", "Thận bị sưng", "Thịt bị thắng lên" };
+		String[] symptoms31 = { "Mổ thấy thận sưng tụ máu từng đám", "Mổ ra thấy thận sưng tụ máu", "Thận sưng tụ máu",
+				"Thận sưng tụ máu từng đám", "Thận bị sưng", "Thịt bị thắng lên","thận sưng" };
 		String[] symptoms32 = { "Hiện các dấu đỏ vuông trên thân", "Hiện các dấu đỏ tròn trên thân",
-				"Hiện các dấu đỏ tam giác trên thân", "Hiện các dấu đỏ vuông, tròn, tam giác trên thân" };
+				"Hiện các dấu đỏ tam giác trên thân", "Hiện các dấu đỏ vuông, tròn, tam giác trên thân","dấu đỏ hình tam giác","dấu đỏ hình" };
 		String[] symptoms33 = { "Da hồng", "Da có màu hồng", "Da màu hồng", "Da ửng hồng",
 				"có vết bầm thâm tím trên da", "Da xuất hiện vết bầm tím", "Xuất hiện vết bầm tím trên da", "Rộp da",
 				"Da phồng rộp", "Tím tai", "Tai tím", "Tai tím tái", "Tím đuôi", "Đuôi tím", "Đuôi tím tái",
-				"Heo con chân bẹt ra ngoài", "Chân heo con bẹt ra ngoài", "Heo con người run rẩy",
-				"Người heo con run rẩy", "Heo con bị tiêu chảy", "Heo con tiêu chảy", "Heo con có dấu hiệu tiêu chảy" };
-		String[] symptoms34 = { "Heo con bị xảy thai giai đoạn cuối", "Thai chết lưu giai đoạn 2",
-				"Thai chết yểu sau khi sinh", "Thai chết sớm sau sinh" };
+				"Heo con chân bẹt ra ngoài", "Chân heo con bẹt ra ngoài", "Heo con người run rẩy"};
+		String[] symptoms34 = { "Heo con bị xảy thai giai đoạn cuối", "Heo con bị xảy thai","Thai chết lưu giai đoạn 2", "Thai bị chết lưu", "Thai chết lưu", "Thai chết yểu sau khi sinh", "Thai chết yểu sau sinh", "Thai chết sớm sau sinh", "Chết yểu sau sinh", "Chết sớm sau sinh", "Chết yểu", "Chết sớm" };
 		String[] symptoms35 = { "Bị viêm phổi", "Phổi bị viêm", "Viêm phổi", "Phổi viêm", "Có hiện tượng viêm phổi" };
 		String[] symptoms36 = { "Heo nái nuôi con bị mất sữa", "Heo nái bị mất sữa", "Heo nái ít sữa",
 				"Heo nái không đủ sữa nuôi con", "Heo nái bị viêm vú", "Heo nái viêm vú", "Heo nái da biến màu",
 				"Heo nái da chuyển màu", "Heo nái sinh non", "Heo nái sinh con non" };
 		String[] symptoms37 = { "Da chuyển màu từ hồng đỏ sang tím xanh nhạt",
-				"Chuyển màu da từ hồng đỏ sang tím xanh nhạt", "Có biểu hiện hắt hơi", "Bị hắt hơi", "Hắt hơi",
-				"Hơi thở nhanh", "Thở nhanh" };
+				"Chuyển màu da từ hồng đỏ sang tím xanh nhạt", "da chuyển màu hồng sang tím","da đổi màu","da chuyển màu tím" };
+		String[] symptoms38 = {"Giảm hưng phấn", "Hưng phấn bị giảm", "Hưng phấn giảm", "Bị mất tính dục", "Tính dục bị mất", "Mất tính dục", "Tính dục mất", "Lượng tinh dịch rất ít", "Tinh dịch ít", "Ít tinh dịch", "Tinh dịch", "Không có nhiều tinh dịch", "Tinh dịch không có nhiều", "Không nhiều tinh dịch", "Tinh dịch không nhiều"} ;
+		
 
 		// Mảng 2 chiều chứa danh sách triệu chứng
 		String[][] tapBi = { symptoms1, symptoms2, symptoms3, symptoms4, symptoms5, symptoms6, symptoms7, symptoms8,
 				symptoms9, symptoms10, symptoms11, symptoms12, symptoms13, symptoms14, symptoms15, symptoms16,
 				symptoms17, symptoms18, symptoms19, symptoms20, symptoms21, symptoms22, symptoms23, symptoms24,
 				symptoms25, symptoms26, symptoms27, symptoms28, symptoms29, symptoms30, symptoms31, symptoms32,
-				symptoms33, symptoms34, symptoms35, symptoms36, symptoms37 };
+				symptoms33, symptoms34, symptoms35, symptoms36, symptoms37,symptoms38 };
 		// Kiểm tra từ cần tìm trong từng chuỗi
 		for (String chuoi : mangChuoi) {
 
 			boolean found = false;
 
-			for (int i = 0; i < 37; i++) {
+			for (int i = 0; i < 38; i++) {
 				for (int j = 0; j < tapBi[i].length; j++) {
 					String tuCanTim = tapBi[i][j];
 					if (chuoi.trim().toLowerCase().contains(tuCanTim.toLowerCase())) {
@@ -254,6 +255,7 @@ public class Controller {
 	}
 
 	///////////////////////////////////////////////////////////////////////////
+	//Lấy thông tin về các triệu chứng
 	public static List<TrieuChung> hoiTruocSuyDien(List<TrieuChung> trieuChungs, Scanner sc) {
 		List<TrieuChung> trieuChungLonGap = new ArrayList<>();
 		System.out.println(
@@ -289,6 +291,7 @@ public class Controller {
 	}
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//Chuẩn đoán bệnh dựa vào các triệu chứng đưa vào
 	public static List<VanDe> suDungSuyDienTien(List<LuatSuyDienTien> luatSuyDienTiens, List<TrieuChung> trieuChungs,
 			VanDeRepository benhRepository) {
 		List<LuatSuyDien> luatSuyDiens = new ArrayList<>();
@@ -329,7 +332,7 @@ public class Controller {
 				if (!trieuChungDaMac.contains(y) && !trieuChungDaHoiNhungKhongMac.contains(y)) {
 					while (true) {
 						System.out.println(
-								"-->Hệ thống: Lợn nhà bạn có bị mắc thêm những triệu chứng sau đây,hãy quan sát những chú lợn của bạn thật kỹ và hãy trả lời tôi"
+								"-->Hệ thống: Lợn nhà bạn có bị mắc thêm những triệu chứng sau đây,hãy quan sát những chú lợn của bạn thật kỹ và hãy trả lời tôi "
 										+ y.getTrieuChung() + " không?\n\t1.Có\n\t2.Không");
 						System.out.println("-------------Câu trả lời của bạn--------------");
 						System.out.print("--> : Câu trả lời của tôi là: ");
